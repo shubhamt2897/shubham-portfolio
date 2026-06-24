@@ -1,0 +1,6 @@
+# Editor / IDE
+.vscode/
+.vs/
+
+# Kiro
+.kiro/

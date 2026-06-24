@@ -693,6 +693,13 @@
       grid-row: span 2;
     }
 
+    /* Fill variant: stretch the gallery to match a tall copy column instead of leaving empty space. */
+    .media-bento.fill {
+      align-self: stretch;
+      height: 100%;
+      grid-auto-rows: minmax(106px, 1fr);
+    }
+
     .media-tile img,
     .media-tile video {
       width: 100%;
@@ -1149,6 +1156,7 @@
             <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">Projects</button>
             <div class="dropdown-menu" aria-label="Project navigation">
               <a href="#work"><strong>Selected work</strong><small>Case-study overview</small></a>
+              <a href="#voicebot"><strong>Assistive Robot</strong><small>Agentic skill library for modular robots</small></a>
               <a href="#leharvester"><strong>LeHarvester</strong><small>Imitation-learning fruit harvesting</small></a>
               <a href="#ils"><strong>Manufacturing Agent</strong><small>Scheduling, vision, and robot sorting</small></a>
             </div>
@@ -1235,18 +1243,110 @@
         </div>
       </section>
 
-      <!-- SELECTED WORK: main conversion section, with two deep case studies. -->
+      <!-- SELECTED WORK: main conversion section presenting the deep case studies. -->
       <section class="section" id="work" aria-labelledby="work-title">
         <div class="section-head reveal">
           <div>
             <p class="eyebrow">Selected work</p>
-            <h2 id="work-title">Two physical AI case studies with working demos.</h2>
+            <h2 id="work-title">Featured projects in physical AI and robot learning.</h2>
           </div>
           <p>
-            These repositories show the work, not just the outcome: architecture, media, setup docs,
-            physical robot data, and enough implementation detail for technical reviewers.
+            End-to-end case studies spanning system architecture, perception, learned and classical
+            control, and validated robot demos, documented in enough depth for technical review.
           </p>
         </div>
+
+        <!-- CASE STUDY: Assistive Robot - agentic skill library / NormaCore Robotics x AI Hackathon Berlin. Most recent project, shown first. -->
+        <article class="case reverse reveal" id="voicebot">
+          <div class="case-grid">
+            <div class="case-copy">
+              <div class="case-title">
+                <h3>Assistive Robot: Agentic Skill Library</h3>
+                <span class="tag">Agentic orchestration</span>
+                <span class="tag">Claude Agent SDK</span>
+                <span class="tag">MCP</span>
+                <span class="tag">SmolVLA</span>
+              </div>
+              <p>
+                At the Robotics &times; AI Hackathon Berlin, on the NormaCore track, my team built a
+                voice- and chat-commanded assistive robot: an agent that perceives its environment
+                through the robot's cameras, plans physical actions, and executes tasks autonomously
+                while recovering from failures. Give it a goal in plain language and it figures out
+                the steps; Claude doesn't just execute, it orchestrates. It's a full
+                perceive &rarr; decide &rarr; act &rarr; verify pipeline, not a scripted demo.
+              </p>
+              <p>
+                The design is a modular agentic skill library. Left unspecified, Claude can choose
+                between a learned policy (SmolVLA, Pi0.x) and classical control (visual-servoing or IK
+                with object pose and motion planning) based on what's desirable, or you pick a skill
+                from the library and Claude runs the orchestration. The broader bet: as robotics
+                infrastructure matures, the agentic layer that can plan, adapt, and recover becomes
+                the real differentiator.
+              </p>
+              <div class="claim-list">
+                <div class="claim">
+                  <i>01</i>
+                  <div>
+                    <strong>Natural-language goal to action</strong>
+                    <span>Speak or type a goal ("stack the small box on the big one") and the agent locates, picks, places, stacks, drags, and points, all from plain language.</span>
+                  </div>
+                </div>
+                <div class="claim">
+                  <i>02</i>
+                  <div>
+                    <strong>Modular agentic skill library</strong>
+                    <span>Claude orchestrates and selects between a learned policy (SmolVLA, Pi0.x) and classical control, or the user picks a skill directly, which is what keeps it modular and user-friendly.</span>
+                  </div>
+                </div>
+                <div class="claim">
+                  <i>03</i>
+                  <div>
+                    <strong>Claude brain over MCP, voice optional</strong>
+                    <span>The Claude Agent SDK drives the NormaCore Station API wrapped as an MCP server; an optional voice loop (browser STT &rarr; Claude &rarr; ElevenLabs) runs decoupled from the control loop. First autonomous pick-and-place succeeded on hardware.</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Source plus the Hugging Face model and dataset published from the project. -->
+              <div class="icon-links" aria-label="Assistive robot links">
+                <a class="icon-link" href="https://github.com/Jaseelkt007/Robotics_berlin_hack" target="_blank" rel="noopener noreferrer" aria-label="Open the assistive robot project on GitHub" title="GitHub">
+                  <svg viewBox="0 0 98 96" aria-hidden="true"><path d="M48.85 0C21.89 0 0 21.89 0 48.85c0 21.58 13.99 39.86 33.41 46.32 2.44.45 3.34-1.06 3.34-2.35 0-1.16-.04-5.01-.07-9.09-13.59 2.95-16.46-5.77-16.46-5.77-2.22-5.64-5.43-7.14-5.43-7.14-4.44-3.03.34-2.97.34-2.97 4.91.35 7.49 5.04 7.49 5.04 4.36 7.47 11.43 5.31 14.22 4.06.44-3.16 1.71-5.31 3.11-6.53-10.85-1.23-22.27-5.43-22.27-24.16 0-5.34 1.91-9.7 5.04-13.12-.51-1.24-2.18-6.21.48-12.94 0 0 4.11-1.31 13.45 5.01a46.68 46.68 0 0 1 24.49 0c9.33-6.32 13.43-5.01 13.43-5.01 2.67 6.73.99 11.7.49 12.94 3.14 3.42 5.03 7.78 5.03 13.12 0 18.78-11.44 22.91-22.33 24.12 1.76 1.52 3.32 4.5 3.32 9.07 0 6.55-.06 11.83-.06 13.44 0 1.3.88 2.82 3.37 2.34 19.4-6.47 33.36-24.74 33.36-46.31C97.7 21.89 75.82 0 48.85 0Z"/></svg>
+                  <span class="icon-label">Source</span>
+                </a>
+                <a class="icon-link hf" href="https://huggingface.co/captainjaseel/smolvla-cube-8dim" target="_blank" rel="noopener noreferrer" aria-label="Open the SmolVLA model on Hugging Face" title="Hugging Face model">
+                  <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">
+                  <span class="icon-label">Model</span>
+                </a>
+                <a class="icon-link hf" href="https://huggingface.co/datasets/shubhamt0802/Berlin-Rob-hack-dataset" target="_blank" rel="noopener noreferrer" aria-label="Open the Berlin Robotics Hack dataset on Hugging Face" title="Hugging Face dataset">
+                  <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">
+                  <span class="icon-label">Dataset</span>
+                </a>
+                <a class="icon-link" href="https://youtu.be/gKlwgUW2sTE" target="_blank" rel="noopener noreferrer" aria-label="Watch the demo video on YouTube" title="Demo video">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.5 3.5-6.5 3.5Z"/></svg>
+                  <span class="icon-label">Demo</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="media-bento fill" aria-label="Assistive robot media">
+              <button class="media-tile primary" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Video%20Project%205%20(1).mp4" data-poster="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Autonomous pick-and-place on hardware">
+                <video muted playsinline preload="metadata" poster="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png">
+                  <source src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Video%20Project%205%20(1).mp4" type="video/mp4">
+                </video>
+                <span class="play-chip" aria-hidden="true">▶</span>
+                <span class="tile-label"><span>Live demo</span><span>Open</span></span>
+              </button>
+              <button class="media-tile tall" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" data-title="NormaCore arm and camera rig the agent perceives and controls">
+                <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" alt="NormaCore robot arm with overhead and side cameras on a tabletop station">
+                <span class="tile-label"><span>Station setup</span></span>
+              </button>
+              <button class="media-tile secondary" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Overhead-camera inference view used for grid control">
+                <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" alt="Overhead camera inference view used to map a target pixel to robot joint waypoints">
+                <span class="tile-label"><span>Inference view</span></span>
+              </button>
+            </div>
+          </div>
+
+        </article>
 
         <!-- CASE STUDY: LeHarvester. Media tiles below open in the shared modal. -->
         <article class="case reveal" id="leharvester">
@@ -1409,9 +1509,9 @@
           </div>
 
         </article>
-      </section>
 
-      <!-- SUPPORTING WORK: smaller projects that reinforce robotics fundamentals. -->
+        </article>
+      </section>
       <section class="section reveal" aria-labelledby="additional-title">
         <div class="section-head">
           <div>
@@ -1456,6 +1556,7 @@
           </p>
         </div>
 
+        <h3 class="eyebrow" style="margin: 0 0 4px; color: var(--blueprint);">Professional experience</h3>
         <div class="timeline">
           <article class="role">
             <time>Jun 2024 - Sep 2025</time>
@@ -1473,6 +1574,10 @@
               <p>I designed FMEA-based validation protocols for 20+ automated stations, implemented multimodal sensor acquisition, and supported robotic deployment troubleshooting across dynamic production environments.</p>
             </div>
           </article>
+        </div>
+
+        <h3 class="eyebrow" style="margin: 32px 0 4px; color: var(--blueprint);">Education</h3>
+        <div class="timeline">
           <article class="role">
             <time>Oct 2022 - Feb 2026</time>
             <div>
@@ -1508,7 +1613,7 @@
           </div>
         </div>
         <footer>
-          
+          <small>&copy; 2024 Shubham Tangadpalliwar. All rights reserved.</small>
         </footer>
       </section>
     </main>
