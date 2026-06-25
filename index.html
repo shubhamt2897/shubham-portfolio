@@ -695,7 +695,13 @@
 
     /* Lead tiles: stacked full-width feature media (e.g. demo video over web UI). */
     .media-tile.lead {
-      grid-column: span 4;
+      grid-column: span 6;
+      grid-row: span 2;
+    }
+
+    /* Half-width tile: two sit side by side on a single row. */
+    .media-tile.half {
+      grid-column: span 3;
       grid-row: span 2;
     }
 
@@ -1111,7 +1117,8 @@
       .media-tile.primary,
       .media-tile.secondary,
       .media-tile.tall,
-      .media-tile.lead {
+      .media-tile.lead,
+      .media-tile.half {
         grid-column: span 1;
         grid-row: span 1;
       }
@@ -1346,11 +1353,11 @@
                 <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Web_UI.png" alt="Operator web dashboard with chat, voice panel, and live camera feed for commanding the robot">
                 <span class="tile-label"><span>Operator web UI</span><span>Open</span></span>
               </button>
-              <button class="media-tile tall" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" data-title="NormaCore arm and camera rig the agent perceives and controls">
+              <button class="media-tile half" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" data-title="NormaCore arm and camera rig the agent perceives and controls">
                 <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" alt="NormaCore robot arm with overhead and side cameras on a tabletop station">
                 <span class="tile-label"><span>Station setup</span></span>
               </button>
-              <button class="media-tile tall" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Overhead-camera inference view used for grid control">
+              <button class="media-tile half" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Overhead-camera inference view used for grid control">
                 <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" alt="Overhead camera inference view used to map a target pixel to robot joint waypoints">
                 <span class="tile-label"><span>Inference view</span></span>
               </button>
