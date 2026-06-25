@@ -705,6 +705,12 @@
       grid-row: span 2;
     }
 
+    /* Third-width tile: three sit side by side on a single row. */
+    .media-tile.third {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
     /* Fill variant: stretch the gallery to match a tall copy column instead of leaving empty space. */
     .media-bento.fill {
       align-self: stretch;
@@ -1118,7 +1124,8 @@
       .media-tile.secondary,
       .media-tile.tall,
       .media-tile.lead,
-      .media-tile.half {
+      .media-tile.half,
+      .media-tile.third {
         grid-column: span 1;
         grid-row: span 1;
       }
@@ -1421,23 +1428,23 @@
               </div>
             </div>
 
-            <div class="media-bento" aria-label="LeHarvester media">
-              <button class="media-tile primary" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Data_collection.mp4" data-poster="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp" data-title="LeHarvester demo footage">
+            <div class="media-bento fill" aria-label="LeHarvester media">
+              <button class="media-tile lead" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Data_collection.mp4" data-poster="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp" data-title="LeHarvester demo footage">
                 <video muted playsinline preload="metadata" poster="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp">
                   <source src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Data_collection.mp4" type="video/mp4">
                 </video>
                 <span class="play-chip" aria-hidden="true">▶</span>
                 <span class="tile-label"><span>Demo footage</span><span>Open</span></span>
               </button>
-              <button class="media-tile secondary" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115834805.webp" data-title="LeHarvester task setup">
+              <button class="media-tile third" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115834805.webp" data-title="LeHarvester task setup">
                 <img src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115834805.webp" alt="LeHarvester fruit-harvesting setup with hanging colored fruit and collection cups">
                 <span class="tile-label"><span>Task setup</span></span>
               </button>
-              <button class="media-tile secondary" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp" data-title="LeHarvester end-effector and targets">
+              <button class="media-tile third" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp" data-title="LeHarvester end-effector and targets">
                 <img src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/PXL_20260510_115846400.webp" alt="Close view of LeHarvester custom gripper and colored hanging fruit targets">
                 <span class="tile-label"><span>End-effector</span></span>
               </button>
-              <button class="media-tile secondary" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Robot.jpeg" data-title="LeHarvester robot hero image">
+              <button class="media-tile third" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Robot.jpeg" data-title="LeHarvester robot hero image">
                 <img src="https://raw.githubusercontent.com/shubhamt2897/LeHarvester/main/data/Robot.jpeg" alt="LeHarvester SO-101 robot with custom harvesting gripper in an orchard scene">
                 <span class="tile-label"><span>Robot detail</span></span>
               </button>
@@ -1516,17 +1523,15 @@
                 <img src="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/camera_angle_1.jpeg" alt="Camera view of part sorting station with a product in the inspection area">
                 <span class="tile-label"><span>Inspection view</span></span>
               </button>
-              <button class="media-tile secondary" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/defective.mp4" data-poster="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/camera_angle_2.jpeg" data-title="Defect reject trajectory">
+              <button class="media-tile lead" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/defective.mp4" data-poster="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/camera_angle_2.jpeg" data-title="Defect reject trajectory">
                 <video muted playsinline preload="metadata" poster="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/camera_angle_2.jpeg">
                   <source src="https://raw.githubusercontent.com/L99-hash/ILS_hackathon/main/media/defective.mp4" type="video/mp4">
                 </video>
                 <span class="play-chip" aria-hidden="true">▶</span>
-                <span class="tile-label"><span>Defect path</span></span>
+                <span class="tile-label"><span>Defect path</span><span>Open</span></span>
               </button>
             </div>
           </div>
-
-        </article>
 
         </article>
       </section>
