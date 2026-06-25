@@ -693,6 +693,12 @@
       grid-row: span 2;
     }
 
+    /* Lead tiles: stacked full-width feature media (e.g. demo video over web UI). */
+    .media-tile.lead {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
     /* Fill variant: stretch the gallery to match a tall copy column instead of leaving empty space. */
     .media-bento.fill {
       align-self: stretch;
@@ -1104,7 +1110,8 @@
 
       .media-tile.primary,
       .media-tile.secondary,
-      .media-tile.tall {
+      .media-tile.tall,
+      .media-tile.lead {
         grid-column: span 1;
         grid-row: span 1;
       }
@@ -1328,18 +1335,22 @@
             </div>
 
             <div class="media-bento fill" aria-label="Assistive robot media">
-              <button class="media-tile primary" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Video%20Project%205%20(1).mp4" data-poster="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Autonomous pick-and-place on hardware">
+              <button class="media-tile lead" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Video%20Project%205%20(1).mp4" data-poster="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Autonomous pick-and-place on hardware">
                 <video muted playsinline preload="metadata" poster="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png">
                   <source src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Video%20Project%205%20(1).mp4" type="video/mp4">
                 </video>
                 <span class="play-chip" aria-hidden="true">▶</span>
                 <span class="tile-label"><span>Live demo</span><span>Open</span></span>
               </button>
+              <button class="media-tile lead" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Web_UI.png" data-title="Operator web UI: chat, voice, and camera view">
+                <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/Web_UI.png" alt="Operator web dashboard with chat, voice panel, and live camera feed for commanding the robot">
+                <span class="tile-label"><span>Operator web UI</span><span>Open</span></span>
+              </button>
               <button class="media-tile tall" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" data-title="NormaCore arm and camera rig the agent perceives and controls">
                 <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/f76795eb-af91-4796-b8ae-18eb59c312f2.png" alt="NormaCore robot arm with overhead and side cameras on a tabletop station">
                 <span class="tile-label"><span>Station setup</span></span>
               </button>
-              <button class="media-tile secondary" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Overhead-camera inference view used for grid control">
+              <button class="media-tile tall" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" data-title="Overhead-camera inference view used for grid control">
                 <img src="https://raw.githubusercontent.com/Jaseelkt007/Robotics_berlin_hack/main/Images/inf.png" alt="Overhead camera inference view used to map a target pixel to robot joint waypoints">
                 <span class="tile-label"><span>Inference view</span></span>
               </button>
