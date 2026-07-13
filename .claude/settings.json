@@ -29,7 +29,9 @@
       "Bash(/c/Users/shubh/anaconda3/python -c \"import playwright; print\\('ok'\\)\")",
       "Bash(/c/Users/shubh/anaconda3/python -m pip show playwright)",
       "Bash(/c/Users/shubh/anaconda3/python -m playwright install chromium)",
-      "Bash(/c/Users/shubh/anaconda3/python \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\test_close3.py\")"
+      "Bash(/c/Users/shubh/anaconda3/python \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\test_close3.py\")",
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

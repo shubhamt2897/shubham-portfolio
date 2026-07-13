@@ -157,7 +157,8 @@
     button.more-card { appearance: none; cursor: pointer; font: inherit; text-align: left; }
 
     /* Info popup for the thesis project — light theme, distinct from the dark media lightbox. */
-    .info-modal { width: min(920px, calc(100vw - 34px)); max-height: min(88vh, 820px); padding: 0; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); color: var(--ink); display: flex; flex-direction: column; }
+    .info-modal { width: min(920px, calc(100vw - 34px)); max-height: min(88vh, 820px); padding: 0; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); color: var(--ink); }
+    .info-modal[open] { display: flex; flex-direction: column; }
     .info-modal::backdrop { background: rgba(35, 42, 46, 0.55); backdrop-filter: blur(6px); }
     .info-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; padding: 20px 22px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
     .info-head h3 { font-size: clamp(20px, 2.6vw, 28px); margin-top: 6px; }
@@ -503,6 +504,14 @@
               <h3 class="serif">ROS2 / MoveIt &mdash; UR5e</h3>
               <p>UR5e manipulation stack with Jacobian DLS IK, MuJoCo simulation, and RTDE testing on physical robot hardware.</p>
               <span class="more-foot">ROS2 &middot; MoveIt &middot; UR5e &nbsp;&rarr;</span>
+            </div>
+          </a>
+          <a class="more-card" href="https://github.com/shubhamt2897/Penplotter" target="_blank" rel="noopener noreferrer">
+            <div class="more-media"><img src="https://raw.githubusercontent.com/shubhamt2897/Penplotter/master/media/FinalAssembly.jpg" alt="DIY XY pen plotter with ESP32, stepper motors, and belt-driven gantry"></div>
+            <div class="more-body">
+              <h3 class="serif">PenPlotter</h3>
+              <p>DIY XY pen plotter: ESP32-driven stepper motors on a belt and guide-rod gantry trace digital patterns onto paper, with the frame and pen holder designed from scratch in SolidWorks.</p>
+              <span class="more-foot"> SolidWorks &middot; Stepper motion  &middot; ESP32 &nbsp;&rarr;</span>
             </div>
           </a>
           </div>
