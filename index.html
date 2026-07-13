@@ -154,6 +154,28 @@
     .more-card:hover { transform: translateY(-3px); border-color: var(--ink); color: var(--ink); }
     .more-media { aspect-ratio: 16/10; overflow: hidden; background: #e7e2d7; border-bottom: 1px solid var(--line); flex-shrink: 0; }
     .more-media img { width: 100%; height: 100%; object-fit: cover; }
+    button.more-card { appearance: none; cursor: pointer; font: inherit; text-align: left; }
+
+    /* Info popup for the thesis project — light theme, distinct from the dark media lightbox. */
+    .info-modal { width: min(920px, calc(100vw - 34px)); max-height: min(88vh, 820px); padding: 0; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); color: var(--ink); display: flex; flex-direction: column; }
+    .info-modal::backdrop { background: rgba(35, 42, 46, 0.55); backdrop-filter: blur(6px); }
+    .info-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; padding: 20px 22px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+    .info-head h3 { font-size: clamp(20px, 2.6vw, 28px); margin-top: 6px; }
+    .info-head button { width: 32px; height: 32px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: transparent; color: var(--ink); cursor: pointer; font-size: 17px; flex-shrink: 0; }
+    .info-head button:hover { background: var(--ink); color: var(--paper); }
+    .info-body { padding: 20px 22px 28px; overflow-y: auto; }
+    .info-body > p { color: var(--ink-soft); font-size: 15px; margin: 0 0 18px; }
+    .info-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+    .info-stat { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 14px; }
+    .info-stat b { display: block; font-size: 18px; color: var(--accent); font-weight: 600; }
+    .info-stat span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .info-h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 26px 0 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .info-h4:first-of-type { margin-top: 0; }
+    .info-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .info-gallery button { padding: 0; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; background: #e7e2d7; cursor: zoom-in; display: block; width: 100%; text-align: left; }
+    .info-gallery img { width: 100%; height: 170px; object-fit: cover; display: block; transition: transform 300ms ease; }
+    .info-gallery button:hover img { transform: scale(1.04); }
+    .info-cap { display: block; padding: 8px 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); border-top: 1px solid var(--line); background: var(--card); }
     .slider-btn {
       display: none; position: absolute; top: calc(50% - 16px); transform: translateY(-50%);
       width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line-strong);
@@ -411,13 +433,22 @@
     <section class="section" id="more">
       <div class="wrap-wide">
         <div class="sec-head reveal">
-          <h2 class="serif">Simulation, RL, and perception</h2>
+          <h2 class="serif">Simulation, Design, RL, and Perception</h2>
           <span class="label">First-principles foundations</span>
         </div>
         <div class="slider-wrap">
           <button class="slider-btn prev" aria-label="Scroll left">&#8592;</button>
           <button class="slider-btn next" aria-label="Scroll right">&#8594;</button>
           <div class="more-grid reveal" id="moreSlider">
+          <!-- THESIS: Virtual Hose-Package Simulation -->
+          <button class="more-card" type="button" id="thesisCardBtn">
+            <div class="more-media"><img src="assets/thesis/comparison.png" alt="Simulated hose deformation compared side by side with the real ArUco-tracked robot hose"></div>
+            <div class="more-body">
+              <h3 class="serif">Masters Thesis: Virtual Hose-Package Simulation</h3>
+              <p>Real-time IK and damping-based deformation solver for robot hose/cable simulation, validated against real hardware with ArUco tracking. Master's thesis, Dürr Systems AG.</p>
+              <span class="more-foot">FABRIK IK &middot; Damping constraints &middot; 95.2% accuracy &nbsp;&rarr;</span>
+            </div>
+          </button>
           <!-- SIMULATION & RL -->
           <a class="more-card" href="https://github.com/shubhamt2897/industrial_rl_project" target="_blank" rel="noopener noreferrer">
             <div class="more-media"><img src="https://raw.githubusercontent.com/shubhamt2897/industrial_rl_project/main/episodes_ultra_hq.gif" alt="Franka Panda arm trained with PPO reaching targets in PyBullet"></div>
@@ -565,6 +596,65 @@
     <div class="modal-body" id="modalBody"></div>
   </dialog>
 
+  <dialog class="info-modal" id="projectModal" aria-labelledby="projectTitle">
+    <div class="info-head">
+      <div>
+        <span class="label accent-label">Master's thesis &middot; Dürr Systems AG</span>
+        <h3 class="serif" id="projectTitle">Virtual Hose-Package Simulation</h3>
+      </div>
+      <button type="button" id="projectClose" aria-label="Close project details">&times;</button>
+    </div>
+    <div class="info-body">
+      <p>
+        Industrial robots normally simulate hoses and cables in virtual commissioning as rigid, proportionally-rotating
+        spheres &mdash; nothing like how a real hose sags and bends. I built a real-time deformation solver that models
+        the hose as a chain of segments solved with <strong>FABRIK inverse kinematics</strong>, then shaped with
+        <strong>spring-damper-style bending and stiffness constraints</strong> plus cylindrical collision handling, running
+        live inside Siemens Tecnomatix Process Simulate.
+      </p>
+      <div class="info-stats">
+        <div class="info-stat"><b>95.16%</b><span>Simulation accuracy</span></div>
+        <div class="info-stat"><b>0.084 m</b><span>Average RMSE</span></div>
+        <div class="info-stat"><b>~154 fps</b><span>Solve rate (6.5ms avg)</span></div>
+        <div class="info-stat"><b>22</b><span>Robot poses validated</span></div>
+      </div>
+
+      <h4 class="info-h4">Methodology</h4>
+      <p>
+        Each hose is modelled as a chain of linked segments. Every simulation step, <strong>FABRIK</strong>
+        (Forward And Backward Reaching Inverse Kinematics) solves the chain toward the target pose by
+        alternating backward and forward reaching passes over the segment positions, converging in only a
+        few iterations without any Jacobian or matrix inversion.
+      </p>
+      <p>
+        On top of that, a <strong>spring-damper-style constraint layer</strong> keeps the result physically
+        plausible: a global stiffness term damps segment displacement toward the hose's rest shape, while a
+        local per-joint angle constraint caps bending at each segment to the manufacturer's maximum bend
+        radius, rotating any excess angle back within limits. A separate cylindrical collision check pushes
+        segments out of robot links they'd otherwise pass through.
+      </p>
+      <p style="margin-bottom:0;">
+        FABRIK itself is <a class="lnk" style="display:inline-flex;" href="https://andreasaristidou.com/FABRIK" target="_blank" rel="noopener noreferrer">Dr. Andreas Aristidou's original algorithm</a> &mdash; the constraint layer above is my own addition for this thesis.
+      </p>
+
+      <h4 class="info-h4">Validation &mdash; ArUco marker tracking vs. real robot</h4>
+      <div class="info-gallery">
+        <button type="button" data-media-type="image" data-src="assets/thesis/setup.png" data-title="Test rig: KUKA robot, Intel RealSense camera, ArUco-marked hose">
+          <img src="assets/thesis/setup.png" alt="Test rig with KUKA robot arm, tripod-mounted RealSense camera, and ArUco-marked hose">
+          <span class="info-cap">Test rig setup</span>
+        </button>
+        <button type="button" data-media-type="image" data-src="assets/thesis/aruco-tracking.png" data-title="ArUco marker pose tracking on the real hose">
+          <img src="assets/thesis/aruco-tracking.png" alt="ArUco markers detected and tracked along the robot hose for ground-truth pose">
+          <span class="info-cap">ArUco marker pose tracking</span>
+        </button>
+        <button type="button" data-media-type="image" data-src="assets/thesis/comparison.png" data-title="Simulation result vs. actual ArUco-tracked robot result">
+          <img src="assets/thesis/comparison.png" alt="Side-by-side comparison of simulated hose deformation and real ArUco-tracked robot">
+          <span class="info-cap">Simulation vs. real robot</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <script>
     ["cvLinkNav", "cvLinkFooter"].forEach((id) => { const link = document.getElementById(id); if (link) link.href = CV_URL; });
 
@@ -598,6 +688,14 @@
     modalClose?.addEventListener("click", () => mediaModal.close());
     mediaModal?.addEventListener("close", clearModal);
     mediaModal?.addEventListener("click", (event) => { if (event.target === mediaModal) mediaModal.close(); });
+
+    const projectModal = document.getElementById("projectModal");
+    const projectClose = document.getElementById("projectClose");
+    document.getElementById("thesisCardBtn")?.addEventListener("click", () => {
+      if (typeof projectModal.showModal === "function") projectModal.showModal();
+    });
+    projectClose?.addEventListener("click", () => projectModal.close());
+    projectModal?.addEventListener("click", (event) => { if (event.target === projectModal) projectModal.close(); });
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); } });

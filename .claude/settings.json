@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/shubh/AppData/Local/Temp -iname \"*.png\" -newer /c/Users/shubh/Desktop -mmin -120 2>/dev/null | head -50)",
+      "Read(//c/Users/shubh/AppData/Local/Temp/**)",
+      "Read(//c/Users/shubh/**)",
+      "Read(//c/Users/shubh/Desktop/**)",
+      "Read(//c/Users/shubh/Downloads/**)",
+      "Bash(/c/Users/shubh/anaconda3/python \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\extract_pdf_pages.py\")",
+      "Bash(/c/Users/shubh/anaconda3/python -c ' *)",
+      "Bash(/c/Users/shubh/anaconda3/python \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\crop_pages.py\")",
+      "Read(//c/Users/shubh/AppData/Roaming/Code/User/globalStorage/**)",
+      "Read(//c/Users/shubh/AppData/Roaming/Code/User/workspaceStorage/**)",
+      "Read(//c/Users/shubh/AppData/Roaming/**)",
+      "Read(//c/Users/shubh/AppData/Local/**)",
+      "Bash(find \"/c/Users/shubh/AppData/Local/Packages/MicrosoftWindows.Client.CBS_cw5n1h2txyewy/TempState/ScreenClip/\" -iname \"*.png\" -newermt \"2026-07-13 09:30:00\" 2>/dev/null)",
+      "Read(//c/Users/shubh/AppData/Local/Packages/MicrosoftWindows.Client.CBS_cw5n1h2txyewy/TempState/ScreenClip//**)",
+      "Read(//c/Users/shubh/AppData/Local/Packages/MicrosoftWindows.Client.CBS_cw5n1h2txyewy/TempState/ScreenClip/**)",
+      "Read(//c/Users/shubh/OneDrive/Pictures/**)",
+      "Bash(xargs -I{} stat -c '%Y %n' {})",
+      "Read(//c/Users/shubh/Pictures/**)",
+      "Bash(cp \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\test_setup_crop.png\" ./setup.png)",
+      "Bash(cp \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\aruco_crop.png\" ./aruco-tracking.png)",
+      "Bash(cp \"/c/Users/shubh/AppData/Local/Packages/MicrosoftWindows.Client.CBS_cw5n1h2txyewy/TempState/ScreenClip/{814C9C6E-0196-492F-B515-5EA0095E7552}.png\" ./comparison.png)",
+      "Bash(rm -f fabrik-iteration.png before-after-constraint.png collision-algorithm.png rmse-accuracy.png performance-fps.png validation-process.png)",
+      "Bash(/c/Users/shubh/anaconda3/python -c \"import playwright; print\\('has playwright'\\)\")",
+      "Bash(npx --version)",
+      "Bash(/c/Users/shubh/anaconda3/python -m pip install --quiet playwright)",
+      "Bash(/c/Users/shubh/anaconda3/python -c \"import playwright; print\\('ok'\\)\")",
+      "Bash(/c/Users/shubh/anaconda3/python -m pip show playwright)",
+      "Bash(/c/Users/shubh/anaconda3/python -m playwright install chromium)",
+      "Bash(/c/Users/shubh/anaconda3/python \"C:\\\\Users\\\\shubh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shubh-Desktop-New-folder-github-portfolio\\\\43988592-67a4-419a-970a-f5f8a32b7b45\\\\scratchpad\\\\test_close3.py\")"
+    ]
+  }
+}
