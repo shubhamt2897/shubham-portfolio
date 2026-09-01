@@ -99,6 +99,8 @@
     .pts span { color: var(--muted); font-size: 14px; line-height: 1.5; }
     .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
     .chip { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 11px; }
+    .status-pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 4px 11px; margin-bottom: 14px; }
+    .status-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
     .lnk { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 13px; border-radius: var(--radius); border: 1px solid var(--line-strong); color: var(--ink-soft); background: transparent; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: background 150ms ease, color 150ms ease, border-color 150ms ease; }
     .lnk:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
@@ -278,7 +280,71 @@
           <span class="label"></span>
         </div>
 
-        <!-- FEATURE 01: Assistive Robot -->
+        <!-- FEATURE 01: Humanoid Locomotion -->
+        <article class="feature reveal" id="humanoid">
+          <div class="feature-top">
+            <div class="feature-text">
+              <p class="feature-index">Humanoid robotics &middot; Reinforcement learning</p>
+              <span class="status-pill">Ongoing</span>
+              <h3 class="serif">Robust Humanoid Locomotion &mdash; Unitree G1</h3>
+              <p class="role-line">Proprioception-only walking policy &middot; PPO in MuJoCo &middot; Domain randomization</p>
+              <p>
+                A walking policy for the Unitree G1 humanoid (29-DOF), trained with PPO in MuJoCo. The
+                goal is a policy robust to disturbances it has to infer from its own senses &mdash; pushes,
+                shifted payload, uneven ground &mdash; using only proprioception (joint angles/velocities,
+                IMU, its own recent actions), the same limited information real hardware would have. No
+                cameras, no privileged state at deployment time.
+              </p>
+              <p>
+                <strong>Current status:</strong> not walking yet. Domain randomization over payload mass/CoM
+                and pushes is implemented and already active during training, but the project is still at
+                the earlier milestone of learning to stand and take a single step from scratch on flat
+                ground &mdash; robustness can't be meaningfully evaluated before basic locomotion works.
+              </p>
+              <ul class="pts">
+                <li><span class="n">01</span><div><strong>Asymmetric actor-critic</strong><span>The deployed policy sees only what real hardware could sense; the training-time-only critic additionally sees privileged simulator state (true velocity, ground-reaction forces, exact randomized payload/friction) for a sharper learning signal without leaking into the deployed policy.</span></div></li>
+                <li><span class="n">02</span><div><strong>Domain randomization from the start</strong><span>Payload mass/CoM and external pushes are randomized during training so the policy has to infer disturbances from proprioception alone, ahead of any hardware transfer.</span></div></li>
+                <li><span class="n">03</span><div><strong>Reward shaping, tracked run by run</strong><span>Rebalancing the alive bonus down to Unitree's own official value (v6/v7) reached better velocity-tracking quality in under half the iterations of the original reward (v3), which mostly rewarded raw survival time.</span></div></li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Unitree G1</span><span class="chip">MuJoCo</span><span class="chip">PPO / rsl_rl</span><span class="chip">Domain Randomization</span><span class="chip">Asymmetric Actor-Critic</span>
+              </div>
+              <div class="links">
+                <a class="lnk" href="https://github.com/shubhamt2897/Humanoid_LocomotioN" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 98 96" aria-hidden="true"><path d="M48.85 0C21.89 0 0 21.89 0 48.85c0 21.58 13.99 39.86 33.41 46.32 2.44.45 3.34-1.06 3.34-2.35 0-1.16-.04-5.01-.07-9.09-13.59 2.95-16.46-5.77-16.46-5.77-2.22-5.64-5.43-7.14-5.43-7.14-4.44-3.03.34-2.97.34-2.97 4.91.35 7.49 5.04 7.49 5.04 4.36 7.47 11.43 5.31 14.22 4.06.44-3.16 1.71-5.31 3.11-6.53-10.85-1.23-22.27-5.43-22.27-24.16 0-5.34 1.91-9.7 5.04-13.12-.51-1.24-2.18-6.21.48-12.94 0 0 4.11-1.31 13.45 5.01a46.68 46.68 0 0 1 24.49 0c9.33-6.32 13.43-5.01 13.43-5.01 2.67 6.73.99 11.7.49 12.94 3.14 3.42 5.03 7.78 5.03 13.12 0 18.78-11.44 22.91-22.33 24.12 1.76 1.52 3.32 4.5 3.32 9.07 0 6.55-.06 11.83-.06 13.44 0 1.3.88 2.82 3.37 2.34 19.4-6.47 33.36-24.74 33.36-46.31C97.7 21.89 75.82 0 48.85 0Z"/></svg>Source</a>
+                <a class="lnk" href="https://huggingface.co/buckets/shubhamt0802/hmn_loc_RL" target="_blank" rel="noopener noreferrer"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">Checkpoints</a>
+                <a class="lnk" href="https://wandb.ai/shubhamt2897-hochschule-schmalkalden/g1_robust_locomotion" target="_blank" rel="noopener noreferrer">Training runs</a>
+              </div>
+            </div>
+
+            <div class="media-bento" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); grid-auto-rows:130px; gap:10px;" aria-label="Humanoid locomotion media">
+              <button class="tile" style="grid-column:span 6; grid-row:span 3;" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/03_v6_2500iter_rebalanced.mp4" data-title="Latest checkpoint: v6, 2500 iterations, rebalanced reward">
+                <video muted playsinline preload="metadata"><source src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/03_v6_2500iter_rebalanced.mp4" type="video/mp4"></video>
+                <span class="play" aria-hidden="true">&#9654;</span>
+                <span class="cap"><span>Latest checkpoint &mdash; v6</span><span>Open</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/01_random_init.mp4" data-title="Random init: no training, collapses within about a second">
+                <video muted playsinline preload="metadata"><source src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/01_random_init.mp4" type="video/mp4"></video>
+                <span class="play" aria-hidden="true">&#9654;</span>
+                <span class="cap"><span>Random init</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/02_v3_5000iter_old_reward.mp4" data-title="v3: 5000 iterations, old reward, stiff defensive stance">
+                <video muted playsinline preload="metadata"><source src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/progression/02_v3_5000iter_old_reward.mp4" type="video/mp4"></video>
+                <span class="play" aria-hidden="true">&#9654;</span>
+                <span class="cap"><span>v3 &mdash; old reward</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/results/episode_length_comparison.png" data-title="Episode length across runs v3, v6, v7">
+                <img src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/results/episode_length_comparison.png" alt="Episode length training curve comparing runs v3, v6, and v7">
+                <span class="cap"><span>Episode length</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/results/tracking_quality_comparison.png" data-title="Velocity-tracking quality across runs v3, v6, v7">
+                <img src="https://raw.githubusercontent.com/shubhamt2897/Humanoid_LocomotioN/main/media/results/tracking_quality_comparison.png" alt="Velocity-tracking quality training curve comparing runs v3, v6, and v7">
+                <span class="cap"><span>Tracking quality</span></span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- FEATURE 02: Assistive Robot -->
         <article class="feature reveal" id="voicebot">
           <div class="feature-top">
             <div class="feature-text">
@@ -335,7 +401,7 @@
           </div>
         </article>
 
-        <!-- FEATURE 02: LeHarvester -->
+        <!-- FEATURE 03: LeHarvester -->
         <article class="feature flip reveal" id="leharvester">
           <div class="feature-top">
             <div class="feature-text">
@@ -381,7 +447,7 @@
           </div>
         </article>
 
-        <!-- FEATURE 03: Manufacturing Agent -->
+        <!-- FEATURE 04: Manufacturing Agent -->
         <article class="feature reveal" id="ils">
           <div class="feature-top">
             <div class="feature-text">
@@ -427,7 +493,7 @@
             </div>
           </div>
         </article>
-        <!-- FEATURE 04: Autonomous Warehouse Simulation -->
+        <!-- FEATURE 05: Autonomous Warehouse Simulation -->
         <article class="feature flip reveal" id="warehouse">
           <div class="feature-top">
             <div class="feature-text">
@@ -609,7 +675,7 @@
                 <div>
                   <h3 class="serif">Dürr Systems AG</h3>
                   <p class="meta">Working Student and Master's Thesis &middot; Robotics and Simulation &middot; Germany</p>
-                  <p>Real-time deformation solver for hose and cable behavior in simulation, a C#/.NET interop layer and live UI, a multi-robot paint-cell virtual commissioning tools deployed for simulation engineers, and conducted virtual commisioning of projects for POC and pre commisioning validation of paint cells.</p>
+                  <p>Real-time deformation solver for hose and cable behavior in simulation, a C#/.NET interop layer and live UI, multi-robot paint-cell virtual commissioning tools deployed for simulation engineers, and conducted virtual commissioning of projects for POC and pre-commissioning validation of paint cells.</p>
                 </div>
               </article>
               <article class="row">
@@ -635,11 +701,13 @@
           </div>
 
           <div class="stack">
-            <div class="skill"><h4>Agentic and LLM systems</h4><p>Claude Agent SDK, MCP servers, tool orchestration, voice pipelines, human-in-the-loop control.</p></div>
-            <div class="skill"><h4>Robot learning</h4><p>Imitation learning, VLA, World Models Reinforcement learning.</p></div>
-            <div class="skill"><h4>Simulation</h4><p>MuJoCo, PyBullet, Gazebo, ROS2, domain randomization, sim-to-real transfer.</p></div>
-            <div class="skill"><h4>Controls and perception</h4><p>FK/IK, Jacobians, operational-space and impedance control; OpenCV, YOLOv8, MiDaS depth, 6D pose.</p></div>
-            <div class="skill"><h4>Deployment</h4><p>SO-101 / UR5e arms, C++/C#/.NET, ROS2/MoveIt, PLC-adjacent workflows, CI/CD.</p></div>
+            <div class="skill"><h4>Languages</h4><p>Python, C++, C#/.NET, MATLAB, Bash.</p></div>
+            <div class="skill"><h4>Robotics &amp; middleware</h4><p>ROS 2, MoveIt 2, FastAPI, Linux, WSL2, Docker, Git, GitLab CI/CD.</p></div>
+            <div class="skill"><h4>Simulation &amp; digital twins</h4><p>MuJoCo, Gazebo Harmonic, Isaac Sim, PyBullet, Tecnomatix Process Simulate, AnyLogic.</p></div>
+            <div class="skill"><h4>Learning &amp; agentic systems</h4><p>PyTorch, Stable-Baselines3, rsl_rl, LeRobot, Gymnasium, Claude Agent SDK, MCP servers, human-in-the-loop control.</p></div>
+            <div class="skill"><h4>Perception</h4><p>OpenCV, Ultralytics, PointNet, MiDaS, PCL, Roboflow, ONNX Runtime, NumPy, SciPy.</p></div>
+            <div class="skill"><h4>Experimentation</h4><p>Weights &amp; Biases, MLflow, TensorBoard, AWS SageMaker, Hugging Face Jobs.</p></div>
+            <div class="skill"><h4>Familiar</h4><p>JAX, RLlib, Google Cloud Platform, Slurm, Azure DevOps.</p></div>
           </div>
         </div>
       </div>
@@ -652,7 +720,7 @@
           <div>
             <p class="label accent-label" style="margin-bottom:18px;">Contact</p>
             <h2 class="serif">Open to robotics, AI, and research opportunities.</h2>
-            <p style="margin-top:20px;">Based in Heilbronn, Germany, and open to relocation. Most interested in roles at the boundary of agentic and learning-based control, real-world robustness, robot simulation, and industrial manipulation.</p>
+            <p style="margin-top:20px;">Based in Heilbronn, Germany, and open to relocation. Most interested in roles that combine robot learning and physical AI for autonomous systems, with real-world robustness, simulation, and industrial manipulation at the core.</p>
             <div class="masthead-foot" style="margin-top:28px;">
               <a class="btn solid" href="mailto:shubhamt2897@gmail.com">Start a conversation</a>
               <a class="btn" href="#" id="cvLinkFooter" target="_blank" rel="noopener noreferrer">Open CV</a>
@@ -666,7 +734,7 @@
             <span><small>Location</small><span>Heilbronn, DE</span></span>
           </div>
         </div>
-        <footer>&copy; 2026 Shubham Tangadpalliwar &middot </footer>
+        <footer>&copy; 2026 Shubham Tangadpalliwar</footer>
       </div>
     </section>
   </main>
