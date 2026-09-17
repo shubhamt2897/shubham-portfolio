@@ -285,7 +285,7 @@
           <div class="feature-top">
             <div class="feature-text">
               <p class="feature-index">Humanoid robotics &middot; Reinforcement learning</p>
-              <span class="status-pill">Ongoing</span>
+              <!--<span class="status-pill">Ongoing</span>-->
               <h3 class="serif">Robust Humanoid Locomotion : Unitree G1</h3>
               <p class="role-line">Proprioception-only walking policy &middot; PPO in MuJoCo &middot; Domain randomization</p>
               <p>
@@ -344,8 +344,56 @@
           </div>
         </article>
 
-        <!-- FEATURE 02: Assistive Robot -->
-        <article class="feature reveal" id="voicebot">
+        <!-- FEATURE 02: Dual-Arm Supermarket Simulation -->
+        <article class="feature reveal" id="supermarket">
+          <div class="feature-top">
+            <div class="feature-text">
+              <p class="feature-index">Simulation &middot; Robot learning data</p>
+              <span class="status-pill">Ongoing</span>
+              <h3 class="serif">Dual-Arm Supermarket Simulation</h3>
+              <p class="role-line">MuJoCo shelf restocking &middot; OpenArm v2 bimanual &middot; VLA data collection</p>
+              <p>
+                A procedurally generated MuJoCo supermarket aisle for collecting bimanual VLA demonstrations on
+                a shelf-restocking task: a dual-arm OpenArm v2 on a rotating lift tower, 364 scanned products, and
+                seven RGB-D cameras. The simulator is complete; teleoperation is in development and no
+                episodes have been recorded yet.
+              </p>
+              <ul class="pts">
+                <li><span class="n">01</span><div><strong>Procedural scene and robot assembly</strong><span>Aisle generated from parameters in Python; tower and arms joined in memory with MjSpec. 18 actuators, 5&times; realtime on CPU.</span></div></li>
+                <li><span class="n">02</span><div><strong>Physics tuned for manipulation</strong><span>Product masses derived from mesh volume and checked against density bands; only reachable items are dynamic, with primitive colliders for speed.</span></div></li>
+                <li><span class="n">03</span><div><strong>Vision-based teleoperation</strong><span>MediaPipe body and hand tracking retargeted to tower and arm joints, verified against MuJoCo forward kinematics.</span></div></li>
+              </ul>
+              <div class="chips">
+                <span class="chip">MuJoCo</span><span class="chip">MjSpec</span><span class="chip">OpenArm v2</span><span class="chip">RGB-D</span><span class="chip">MediaPipe</span>
+              </div>
+              <div class="links">
+                <a class="lnk" href="https://github.com/shubhamt2897/mujoco-supermarket-sim-asset-dc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 98 96" aria-hidden="true"><path d="M48.85 0C21.89 0 0 21.89 0 48.85c0 21.58 13.99 39.86 33.41 46.32 2.44.45 3.34-1.06 3.34-2.35 0-1.16-.04-5.01-.07-9.09-13.59 2.95-16.46-5.77-16.46-5.77-2.22-5.64-5.43-7.14-5.43-7.14-4.44-3.03.34-2.97.34-2.97 4.91.35 7.49 5.04 7.49 5.04 4.36 7.47 11.43 5.31 14.22 4.06.44-3.16 1.71-5.31 3.11-6.53-10.85-1.23-22.27-5.43-22.27-24.16 0-5.34 1.91-9.7 5.04-13.12-.51-1.24-2.18-6.21.48-12.94 0 0 4.11-1.31 13.45 5.01a46.68 46.68 0 0 1 24.49 0c9.33-6.32 13.43-5.01 13.43-5.01 2.67 6.73.99 11.7.49 12.94 3.14 3.42 5.03 7.78 5.03 13.12 0 18.78-11.44 22.91-22.33 24.12 1.76 1.52 3.32 4.5 3.32 9.07 0 6.55-.06 11.83-.06 13.44 0 1.3.88 2.82 3.37 2.34 19.4-6.47 33.36-24.74 33.36-46.31C97.7 21.89 75.82 0 48.85 0Z"/></svg>Source</a>
+              </div>
+            </div>
+
+            <div class="media-bento" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); grid-auto-rows:130px; gap:10px;" aria-label="Supermarket simulation media">
+              <button class="tile" style="grid-column:span 6; grid-row:span 3;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" data-title="OpenArm v2 on the lift tower reaching into a stocked gondola">
+                <img src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" alt="Robot arm on a lift tower reaching into a stocked supermarket shelf beside a roll cage">
+                <span class="cap"><span>Supermarket aisle</span><span>Open</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/sensor_map.png" data-title="On-board cameras: tower eye and two wrist cameras">
+                <img style="object-fit:contain; background:#10131a;" src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/sensor_map.png" alt="Robot front view with tower and wrist camera feeds beside their mounts">
+                <span class="cap"><span>On-board cameras</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/teleop_synthetic_stages.png" data-title="Teleoperation retargeting, driven by a synthetic operator">
+                <img style="object-fit:contain; background:#10131a;" src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/teleop_synthetic_stages.png" alt="Scripted operator poses beside the robot posture each one drives">
+                <span class="cap"><span>Teleop retargeting</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 6; grid-row:span 2;" type="button" data-media-type="image" data-src="assets/supermarket/fixed_cameras.png" data-title="Fixed observation cameras: shelf front and overhead">
+                <img style="object-fit:contain; background:#10131a;" src="assets/supermarket/fixed_cameras.png" alt="Shelf-front and overhead fixed camera views of the aisle">
+                <span class="cap"><span>Fixed cameras</span></span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- FEATURE 03: Assistive Robot -->
+        <article class="feature flip reveal" id="voicebot">
           <div class="feature-top">
             <div class="feature-text">
               <p class="feature-index">Agentic robotics &middot;  </p>
@@ -401,8 +449,8 @@
           </div>
         </article>
 
-        <!-- FEATURE 03: LeHarvester -->
-        <article class="feature flip reveal" id="leharvester">
+        <!-- FEATURE 04: LeHarvester -->
+        <article class="feature reveal" id="leharvester">
           <div class="feature-top">
             <div class="feature-text">
               <p class="feature-index">Imitation learning &middot; </p>
@@ -447,8 +495,8 @@
           </div>
         </article>
 
-        <!-- FEATURE 04: Manufacturing Agent -->
-        <article class="feature reveal" id="ils">
+        <!-- FEATURE 05: Manufacturing Agent -->
+        <article class="feature flip reveal" id="ils">
           <div class="feature-top">
             <div class="feature-text">
               <p class="feature-index">Industrial automation &middot;</p>
@@ -493,8 +541,8 @@
             </div>
           </div>
         </article>
-        <!-- FEATURE 05: Autonomous Warehouse Simulation -->
-        <article class="feature flip reveal" id="warehouse">
+        <!-- FEATURE 06: Autonomous Warehouse Simulation -->
+        <article class="feature reveal" id="warehouse">
           <div class="feature-top">
             <div class="feature-text">
               <p class="feature-index">Simulation &amp; Logistics &middot; Gazebo Harmonic</p>
