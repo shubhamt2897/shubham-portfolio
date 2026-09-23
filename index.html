@@ -354,37 +354,49 @@
               <p class="role-line">MuJoCo shelf restocking &middot; OpenArm v2 bimanual &middot; VLA data collection</p>
               <p>
                 A procedurally generated MuJoCo supermarket aisle for collecting bimanual VLA demonstrations on
-                a shelf-restocking task: a dual-arm OpenArm v2 on a rotating lift tower, 364 scanned products, and
-                seven RGB-D cameras. The simulator is complete; teleoperation is in development and no
-                episodes have been recorded yet.
+                a shelf-restocking task: a dual-arm OpenArm v2 on a rotating lift tower, 359 scanned products, and
+                eight RGB-D cameras. Camera-based teleoperation now runs end to end. A webcam reads your body with
+                MediaPipe, the tower and both arms follow, and it has been driven to reach into the roll cage. The
+                simulator itself is ready for data collection, with deterministic state and RGB-D per camera and an
+                external recorder plugging into a passive viewer loop. Teleoperation is the open problem.
               </p>
               <ul class="pts">
                 <li><span class="n">01</span><div><strong>Procedural scene and robot assembly</strong><span>Aisle generated from parameters in Python; tower and arms joined in memory with MjSpec. 18 actuators, 5&times; realtime on CPU.</span></div></li>
                 <li><span class="n">02</span><div><strong>Physics tuned for manipulation</strong><span>Product masses derived from mesh volume and checked against density bands; only reachable items are dynamic, with primitive colliders for speed.</span></div></li>
-                <li><span class="n">03</span><div><strong>Vision-based teleoperation</strong><span>MediaPipe body and hand tracking retargeted to tower and arm joints, verified against MuJoCo forward kinematics.</span></div></li>
+                <li><span class="n">03</span><div><strong>Camera teleoperation, running live</strong><span>MediaPipe Holistic landmarks retargeted in closed form to the 18 joints. Crouch lowers the carriage, shoulders yaw the tower, a pinch closes a gripper. Verified against MuJoCo forward kinematics to ~1e-13; commands go to position actuators, never to qpos.</span></div></li>
+                <li><span class="n">04</span><div><strong>Tested, and where it tops out</strong><span>Monocular RGB tracking will not scale to reliable demonstrations. The pose model returns all 33 landmarks whether or not it can see them, so an occluded arm is inferred, typically mirrored from the visible side. Weak monocular depth leaves torso yaw and the limb twists poorly observable, so control jitters. Joint-angle retargeting also reproduces posture, not end-effector pose, so placement is not dexterous enough to record from. A Cartesian/IK control mode with a clutch is the next step.</span></div></li>
               </ul>
               <div class="chips">
-                <span class="chip">MuJoCo</span><span class="chip">MjSpec</span><span class="chip">OpenArm v2</span><span class="chip">RGB-D</span><span class="chip">MediaPipe</span>
+                <span class="chip">MuJoCo</span><span class="chip">MjSpec</span><span class="chip">OpenArm v2</span><span class="chip">RGB-D</span><span class="chip">MediaPipe</span><span class="chip">OpenCV</span><span class="chip">Teleoperation</span>
               </div>
               <div class="links">
                 <a class="lnk" href="https://github.com/shubhamt2897/mujoco-supermarket-sim-asset-dc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 98 96" aria-hidden="true"><path d="M48.85 0C21.89 0 0 21.89 0 48.85c0 21.58 13.99 39.86 33.41 46.32 2.44.45 3.34-1.06 3.34-2.35 0-1.16-.04-5.01-.07-9.09-13.59 2.95-16.46-5.77-16.46-5.77-2.22-5.64-5.43-7.14-5.43-7.14-4.44-3.03.34-2.97.34-2.97 4.91.35 7.49 5.04 7.49 5.04 4.36 7.47 11.43 5.31 14.22 4.06.44-3.16 1.71-5.31 3.11-6.53-10.85-1.23-22.27-5.43-22.27-24.16 0-5.34 1.91-9.7 5.04-13.12-.51-1.24-2.18-6.21.48-12.94 0 0 4.11-1.31 13.45 5.01a46.68 46.68 0 0 1 24.49 0c9.33-6.32 13.43-5.01 13.43-5.01 2.67 6.73.99 11.7.49 12.94 3.14 3.42 5.03 7.78 5.03 13.12 0 18.78-11.44 22.91-22.33 24.12 1.76 1.52 3.32 4.5 3.32 9.07 0 6.55-.06 11.83-.06 13.44 0 1.3.88 2.82 3.37 2.34 19.4-6.47 33.36-24.74 33.36-46.31C97.7 21.89 75.82 0 48.85 0Z"/></svg>Source</a>
+                <a class="lnk" href="https://github.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/blob/master/teleop/README.md" target="_blank" rel="noopener noreferrer">Teleop write-up</a>
               </div>
             </div>
 
             <div class="media-bento" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); grid-auto-rows:130px; gap:10px;" aria-label="Supermarket simulation media">
-              <button class="tile" style="grid-column:span 6; grid-row:span 3;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" data-title="OpenArm v2 on the lift tower reaching into a stocked gondola">
-                <img src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" alt="Robot arm on a lift tower reaching into a stocked supermarket shelf beside a roll cage">
-                <span class="cap"><span>Supermarket aisle</span><span>Open</span></span>
+              <button class="tile" style="grid-column:span 6; grid-row:span 3;" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/media/teleop_live.mp4" data-poster="assets/supermarket/teleop_live_poster.jpg" data-title="Live teleoperation in the aisle: operator on a phone camera drives both arms toward the roll cage">
+                <video muted playsinline preload="metadata" poster="assets/supermarket/teleop_live_poster.jpg"><source src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/media/teleop_live.mp4" type="video/mp4"></video>
+                <span class="cap"><span>Live teleoperation</span><span>Open</span></span>
               </button>
-              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/sensor_map.png" data-title="On-board cameras: tower eye and two wrist cameras">
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" data-title="OpenArm v2 on the lift tower reaching into a stocked gondola">
+                <img src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/hero_aisle.png" alt="Robot arm on a lift tower reaching into a stocked supermarket shelf beside a roll cage">
+                <span class="cap"><span>Supermarket aisle</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="video" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/media/teleop_robot_only.mp4" data-poster="assets/supermarket/teleop_robot_only_poster.jpg" data-title="Robot-only bench: the operator moves, the tower and both arms copy the pose">
+                <video muted playsinline preload="metadata" poster="assets/supermarket/teleop_robot_only_poster.jpg"><source src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/media/teleop_robot_only.mp4" type="video/mp4"></video>
+                <span class="cap"><span>Pose mapping on the bench</span></span>
+              </button>
+              <button class="tile" style="grid-column:span 2; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/sensor_map.png" data-title="On-board cameras: tower eye and two wrist cameras">
                 <img style="object-fit:contain; background:#10131a;" src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/sensor_map.png" alt="Robot front view with tower and wrist camera feeds beside their mounts">
                 <span class="cap"><span>On-board cameras</span></span>
               </button>
-              <button class="tile" style="grid-column:span 3; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/teleop_synthetic_stages.png" data-title="Teleoperation retargeting, driven by a synthetic operator">
+              <button class="tile" style="grid-column:span 2; grid-row:span 2;" type="button" data-media-type="image" data-src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/teleop_synthetic_stages.png" data-title="One motion at a time: the scripted operator beside the robot posture each pose drives">
                 <img style="object-fit:contain; background:#10131a;" src="https://raw.githubusercontent.com/shubhamt2897/mujoco-supermarket-sim-asset-dc/master/docs/figures/teleop_synthetic_stages.png" alt="Scripted operator poses beside the robot posture each one drives">
                 <span class="cap"><span>Teleop retargeting</span></span>
               </button>
-              <button class="tile" style="grid-column:span 6; grid-row:span 2;" type="button" data-media-type="image" data-src="assets/supermarket/fixed_cameras.png" data-title="Fixed observation cameras: shelf front and overhead">
+              <button class="tile" style="grid-column:span 2; grid-row:span 2;" type="button" data-media-type="image" data-src="assets/supermarket/fixed_cameras.png" data-title="Fixed observation cameras: shelf front and overhead">
                 <img style="object-fit:contain; background:#10131a;" src="assets/supermarket/fixed_cameras.png" alt="Shelf-front and overhead fixed camera views of the aisle">
                 <span class="cap"><span>Fixed cameras</span></span>
               </button>
